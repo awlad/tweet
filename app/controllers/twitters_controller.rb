@@ -4,7 +4,7 @@ class TwittersController < ApplicationController
   # GET /twitters
   # GET /twitters.json
   def index
-    @twitters = Twitter.all
+    @twitters = Twitter.all.order(created_at: :desc)
   end
 
   # GET /twitters/1

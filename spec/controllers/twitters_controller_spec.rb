@@ -29,11 +29,15 @@ RSpec.describe TwittersController, type: :controller do
   # Twitter. As you add validations to Twitter, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+        message: 'This is tweet no 1'
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+        message: ''
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -44,7 +48,7 @@ RSpec.describe TwittersController, type: :controller do
   describe "GET #index" do
     it "returns a success response" do
       Twitter.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index
       expect(response).to be_successful
     end
   end
@@ -52,14 +56,14 @@ RSpec.describe TwittersController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       twitter = Twitter.create! valid_attributes
-      get :show, params: {id: twitter.to_param}, session: valid_session
+      get :show, params: {id: twitter.to_param}
       expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new
       expect(response).to be_successful
     end
   end
@@ -67,7 +71,7 @@ RSpec.describe TwittersController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       twitter = Twitter.create! valid_attributes
-      get :edit, params: {id: twitter.to_param}, session: valid_session
+      get :edit, params: {id: twitter.to_param}
       expect(response).to be_successful
     end
   end
@@ -97,14 +101,16 @@ RSpec.describe TwittersController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+            message: 'new tweeter message'
+        }
       }
 
       it "updates the requested twitter" do
         twitter = Twitter.create! valid_attributes
         put :update, params: {id: twitter.to_param, twitter: new_attributes}, session: valid_session
         twitter.reload
-        skip("Add assertions for updated state")
+        expect(twitter.message).to eq new_attributes[:message]
       end
 
       it "redirects to the twitter" do

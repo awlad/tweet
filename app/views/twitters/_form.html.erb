@@ -1,7 +1,8 @@
-<%= form_with(model: twitter, local: true) do |form| %>
+<%= form_with(model: twitter, local: true, class: 'text-center border border-light p-5') do |form| %>
+  <p class="h4 mb-4">Tweet</p>
   <% if twitter.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(twitter.errors.count, "error") %> prohibited this twitter from being saved:</h2>
+      <h2>Fix below <%= pluralize(twitter.errors.count, "error") %> errors:</h2>
 
       <ul>
         <% twitter.errors.full_messages.each do |message| %>
@@ -10,13 +11,13 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :message %>
-    <%= form.text_field :message %>
+  <div class="form-group">
+    <label for="message">Your tweet</label>
+    <%= form.text_area :message, class: 'form-control mb-4', required: true, maxlength: 280, data:{countshow: '#remaining', countable: 1}, rows: 3 %>
+    <div class="small text-muted">Remaining Characters: <span id="remaining">280</span></div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
+  <%= form.submit 'Save Tweet', class:'btn btn-info' %>
+
 <% end %>

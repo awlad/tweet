@@ -1,24 +1,16 @@
 # README
+Very basic tweet management system.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Specs
+* Ruby: 2.5.3
+* Rails: 6.0.0.rc2
+* Database: mySql
+* jQuery 
+* Bootstrap
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Setup instructions
+* `git clone https://github.com/awlad/tweet.git`
+* Run `bundle`
+* Run `rake db:create && rake db:migrate`
+* `rails s`
+* Open browser & go to `localhost:3000`
